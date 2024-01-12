@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <link rel="stylesheet" href="./styles/background.css">
+    <link rel="stylesheet" href="./styles/layout-style.css">
+    <link rel="stylesheet" href="./styles/orderDetails-style.css">
+</head>
+<body>
+    <div class="container">
+
+        <nav>
+            <div class="leftButtons">
+                <button class="products" onclick="window.location.replace('./Products Page.html')">Products</button>
+            </div>
+    
+            <div class="rightButtons">
+                <div class="dropdown">
+                    <button class="account">Account</button>
+                    <div class="dropdownContent">
+                        <a href="./orders.html">Orders</a>
+                        <a href="">Account settings</a>
+                        <a href="./signIn.html">Log out</a>
+                    </div>
+                </div>
+                <button class="cart">Cart</button>
+            </div>
+        </nav>
+
+        <div class="main">
+
+            <div class="orderDetails">
+                <div class="top">
+                    <p class="orderId"># 1234</p>
+                    <p class="orderDate"> 01/12/2023</p>
+                </div>
+
+                <hr>
+                <h3>Items:</h3>
+
+                
+                <div class="orderContent">
+
+                    <hr>
+                    <div class="item">
+                        <a onclick="window.location.replace('product.html')">Book Title</a>
+                        <p class="price">Price</p>
+                    </div>
+
+                </div>
+
+
+                <hr>
+                <div class="priceDiv">
+                    <p class="price">Price: </p>
+                </div>
+                <hr>
+
+                <div class="bottom">
+
+                    <div class="paymentDetails">
+                        <p>Payment Info</p>
+                        <hr>
+                        <p class="paymentType">Payment type: Card</p>
+                        <p class="cardNumber">Card Number: 031203183010</p>
+                    </div>
+
+                    <div class="adressDetails">
+                        <p>Delivary Info</p>
+                        <hr>
+                        <p class="details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum enim dicta tenetur rerum fugiat, odit similique explicabo corporis ratione? Ab!</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

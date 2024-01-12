@@ -1,0 +1,12 @@
+.order{
+    background-color: hsla(126, 81%, 43%, 1);
+    width: 270px;
+    height: 100px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.order:hover{
+    cursor: pointer;
+}

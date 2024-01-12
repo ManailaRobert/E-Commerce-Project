@@ -3,23 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products Page</title>
-    <link rel="stylesheet" href="./styles/productsPage-style.css">
+    <title>Orders</title>
     <link rel="stylesheet" href="./styles/background.css">
     <link rel="stylesheet" href="./styles/layout-style.css">
-
+    <link rel="stylesheet" href="./styles/orders-style.css">
 </head>
 <body>
     <div class="container">
-
         <nav>
             <div class="leftButtons">
                 <button class="products" onclick="window.location.replace('./Products Page.html')">Products</button>
             </div>
-
+    
             <div class="rightButtons">
-                <input type="text" id="searchBox" placeholder="Search">
-                <button class="search">Search</button>
                 <div class="dropdown">
                     <button class="account">Account</button>
                     <div class="dropdownContent">
@@ -33,18 +29,15 @@
         </nav>
 
         <div class="main">
-            <div class="product" onclick="window.location.replace('productDetails.html')">
-                <img src="./assets/productImages/download.jpg" alt="">
+            <div class="order">
+                <p class="orderid">Order ID: # 12345</p>
                 <hr>
-                <p class="Title">Title</p>
-                <p class="author">Author</p>
-                <p class="price">price</p>
-                <button class="addToCart">Add to Cart</button>
-            </div> 
-
+                <p class="price">Price:</p>
+                <p class="orderStatus">Order status: Finished on 01/12/2023</p>
+                <a href="orderDetails.html" class="orderInfo">OrderInfo</a>
+            </div>
         </div>
-        
     </div>
+
 </body>
-<script src="./js/productsPage-script.js"></script>
 </html>

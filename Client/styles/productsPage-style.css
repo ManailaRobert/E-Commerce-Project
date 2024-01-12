@@ -1,78 +1,28 @@
-*{
-    border: 0px;
-    padding: 0px;
-    color: hsla(126, 100%, 12%, 1);
-}
 
-button{
-    background-color: hsla(126, 77%, 61%, 1);
-    padding: 3px;
-    width: 60px;
-    height: 20px;
-    /* border: solid; */
-    border-color: hsla(126, 100%, 12%, 1);
-    cursor: pointer;
-}
-
-.container{
-    padding-top:50px;
+.product{
+    background-color: hsla(126, 81%, 43%, 1);
+    min-width: 270px;
+    height: 320px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    width:  70%;
+    gap: 5px;
 }
-/* Dropdwon */
-.dropdown{
-    display: inline-block;
+.product:hover{
+    cursor:pointer;
+    /* transform: ; */
 }
-.dropdown a{
-    display: block;
-    text-decoration: none;
-    padding: 3px;
-}
-.dropdown .dropdownContent{
-    display: none;
-    position: absolute;
+.addToCart{
+    width: 100px;
     background-color: hsla(126, 77%, 61%, 1);
-    min-width: 65;
-    box-shadow: 2px 2px 2px hsla(0, 0%, 0%, 0.212);
-}
-.dropdown:hover .dropdownContent{
-    display: block;
-}
-/* Nav */
-nav{
-    background-color:hsla(126, 81%, 43%, 1);
-    width:  1200px;
-    height: 50px;
-    display: flex;
-}
-.leftButtons{  
-    display: flex;
-    width:50%;
-    align-items: center;
-    gap: 5px;
     padding: 5px;
-}
-.rightButtons{
-    display: flex;
-    width:50%;
-    align-items: center;
-    justify-content: right;
-    gap: 5px;
-    padding: 5px;
-
-}
-#searchBox{
-    width: 200px;
-    height: 20px;
+    width: 100px;
+    height: 30px;
+    border-color: hsla(126, 100%, 12%, 1);
 }
 
-/* Products container */
-
-.productsContainer{
-    background-color: hsla(126, 80%, 36%, 1);
-    width: 1200px;
-    min-height: 650px;
+img{
+    height: 200px;
+    width: 150px;
 }
