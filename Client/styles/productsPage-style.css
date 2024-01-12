@@ -74,4 +74,5 @@ nav{
 .productsContainer{
     background-color: hsla(126, 80%, 36%, 1);
     width: 1200px;
+    min-height: 650px;
 }
