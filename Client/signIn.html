@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="./styles/signUp signIn-style.css">
+    <link rel="stylesheet" href="./styles/background.css">
+</head>
+<body>
+    <div class="container">
+        <form id="form" onsubmit=" return validateForm()">
+            <h1>Log In</h1>
+
+
+        <div class="input-control">
+            <input type="text" name="email" id="email" placeholder="Email">
+            <div class="error"id="email-error"></div>
+        </div>
+
+        <div class="input-control">
+            <input type="text" name="password" id="password" placeholder=" Password">
+            <div class="error"id="password-error"></div>
+        </div>
+
+        <button type="submit" >Sign In</button>
+        <p>If you dont have an account sign in <a href="./signUp.html">here</a>.</p>
+        </form>
+    </div>
+</body>
+<script src="./js/signUp-script.js"></script>
+</html>

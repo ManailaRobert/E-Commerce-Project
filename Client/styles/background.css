@@ -1,0 +1,9 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    background-image: url('../assets/background.jpg');
+    background-size:auto;
+    background-position: center; 
+    display: flex;
+    justify-content: center;
+}
