@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings</title>
+    <link rel="stylesheet" href="./styles/background.css">
+    <link rel="stylesheet" href="./styles/layout-style.css">
+    <link rel="stylesheet" href="./styles/accountSettings-style.css">
+</head>
+<body>
+    <div class="container">
+
+        <nav>
+            <div class="leftButtons">
+                <button class="products" onclick="window.location.replace('./Products Page.html')">Products</button>
+            </div>
+    
+            <div class="rightButtons">
+                <div class="dropdown">
+                    <button class="account">Account</button>
+                    <div class="dropdownContent">
+                        <a href="./orders.html">Orders</a>
+                        <a href="./Account settings.html">Account settings</a>
+                        <a href="./signIn.html">Log out</a>
+                    </div>
+                </div>
+                <button class="cart" onclick="window.location.replace('./cart.html')">Cart</button>
+            </div>
+        </nav>
+
+        <div class="main">
+            <div class="leftSide">
+                <button class="user">My Details</button>
+                <button class="cardsButton">My Cards</button>
+            </div>
+
+            <div class="rightSide">
+                <div class="content"></div>
+                <!-- <div class="content content1">
+                    <hr>
+                    <div class="usernameContainer">
+                        <label >Username:</label>
+                        <div class="usernameDetails">
+                            <input type="text" class="username">
+                            <button class="changeUsername">Change</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="emailContainer">
+                        <label>Email:</label>
+                        <div class="emailDetails">
+                            <input type="text" class="email">
+                            <button class="changeEmail">Change</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="passwordContainer">
+                        <label>Password:</label>
+                        <div class="passwordDetails">
+                            <input type="password" class="password">
+                            <button class="changePassword">Change</button>
+                            <button class="view">View</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="adressContainer">
+                        <div class="adressText">
+                            <label >Adress</label>
+                            <button class="addAdress">Add</button>
+                        </div>
+                        <div class="adresses">
+                            <div class="adressItem">
+                            <p class="details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, modi consectetur eveniet quam temporibus sit.</p>
+                            <button class="delete">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>  -->
+
+                <!-- <div class="content content2">
+                    <div class="addCards">
+                        <p>Add Card: </p>
+                        <input type="text" class="cardTypeInput" placeholder="Card Type">
+                        <input type="number" class="cardNumberInput" placeholder="Card Number">
+                        <input type="text" class="cardHolderNameInput" placeholder="Card Holder Name">
+                        <button class="addCard">Add</button>
+                    </div>
+                    <hr>
+                    <div class="cards">
+
+                        <div class="card">
+                            <hr>
+                            <div class="top">
+                                <p class="cardType">Visa</p>
+                                <p class="cardNumber">3912873091</p>
+                            </div>
+                            <div class="middle">
+                                <p class="cardHolderName">Robert</p>
+                            </div>
+                            <hr>
+                            <div class="bottom">
+                                <button class="delete">Delete</button>
+                            </div>
+                            <hr>
+                        </div>
+
+                    </div>
+                    <hr>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./js/accountSettings-script.js"></script>
+</html>

@@ -1,12 +1,28 @@
+.main{
+    overflow-y: auto;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 50px;
+}
 .order{
     background-color: hsla(126, 81%, 43%, 1);
-    width: 270px;
-    height: 100px;
+    width: 50%;
+    height: 165px;
     padding: 10px;
     display: flex;
     flex-direction: column;
     gap: 5px;
+    box-shadow: 0px 0px 3px 3px hsla(0, 0%, 0%, 0.212);
 }
-.order:hover{
+img{
+    width: 30px;
+}
+.productImages{
+    display: flex;
+    gap: 3px;
+}
+.orderInfo{
+    display:inline-block;
     cursor: pointer;
+    width: fit-content;
 }

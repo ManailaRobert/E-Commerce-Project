@@ -15,14 +15,17 @@ nav{
     display: flex;
     padding-left: 10px;
     padding-right: 10px;
+    box-shadow: 0px 0px 10px 10px hsla(0, 0%, 0%, 0.212);
+
 }
-nav button{
+button{
     background-color: hsla(126, 77%, 61%, 1);
     padding: 5px;
     min-width: 70px;
     min-height: 30px;
     border-color: hsla(126, 100%, 12%, 1);
     cursor: pointer;
+    border-radius: 5px;
 }
 .leftButtons{  
     display: flex;
@@ -39,13 +42,6 @@ nav button{
     gap: 5px;
     padding: 5px;
 }
-#searchBox{
-    width: 200px;
-    height: 20px;
-}
-input::placeholder{
-    padding: 5px;
-}
 
 /* Main */
 .main{
@@ -56,7 +52,9 @@ input::placeholder{
     min-height: 650px;
     padding: 10px;
     row-gap: 10px;
-    column-gap: 10px;    
+    column-gap: 10px;  
+    box-shadow: 0px 0px 10px 10px hsla(0, 0%, 0%, 0.212);
+  
 }
 
 hr{
@@ -83,4 +81,12 @@ hr{
 }
 .dropdown:hover .dropdownContent{
     display: block;
+}
+input{
+    background-color: hsla(126, 77%, 61%, 1);
+    border-color: hsla(126, 100%, 12%, 1);
+}
+input::placeholder{
+    padding: 5px;
+    color: hsla(126, 100%, 12%, 1);
 }

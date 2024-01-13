@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orders</title>
+    <title>Product page</title>
     <link rel="stylesheet" href="./styles/background.css">
     <link rel="stylesheet" href="./styles/layout-style.css">
-    <link rel="stylesheet" href="./styles/orders-style.css">
+    <link rel="stylesheet" href="./styles/product-style.css">
 </head>
 <body>
     <div class="container">
+
         <nav>
             <div class="leftButtons">
                 <button class="products" onclick="window.location.replace('./Products Page.html')">Products</button>
@@ -29,22 +30,31 @@
         </nav>
 
         <div class="main">
-            <div class="order">
-                <p class="orderid">Order ID: # 12345</p>
+
+            <div class="leftSide">
                 <hr>
-                <div class="productImages">
-                    <img src="./assets/productImages/download.jpg" alt="">
-                    <img src="./assets/productImages/download.jpg" alt="">
-                    <img src="./assets/productImages/download.jpg" alt="">
-                    <img src="./assets/productImages/download.jpg" alt="">
+                <img src="./assets/productImages/download.jpg" alt="">
+                <div class="bookDetails">
+                    <hr>
+                    <p class="title">Title:</p>
+                    <p class="author">Author</p>
+                    <hr>
+                    <p class="price">Price</p>
+                    <button class="addToCart">Add to cart</button>
                 </div>
-                <p class="price">Price:</p>
-                <p class="datePlaced">Date placed: 01/11/2023</p>
-                <p class="orderStatus">Order status: Finished on 01/12/2023</p>
-                <a href="orderDetails.html" class="orderInfo">OrderInfo</a>
+                <hr>
+            </div>
+
+            <div class="rightSide">
+                <hr>
+                <p class="descText">Description</p>
+                <div class="description">   
+                    <p class="productDescription">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem adipisci ipsum animi, aspernatur eum voluptatum mollitia quas eaque esse laboriosam voluptatem. Quo dicta placeat, unde eaque doloremque dolorum incidunt asperiores, provident nostrum soluta porro eveniet cumque quidem quia excepturi est aperiam facilis maxime sit impedit necessitatibus ipsam quis saepe? Quia.</p>
+                </div>
+                <hr>
+
             </div>
         </div>
     </div>
-
 </body>
 </html>

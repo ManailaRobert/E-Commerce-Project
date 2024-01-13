@@ -1,0 +1,56 @@
+main{
+    flex-direction: row;
+}
+.leftSide{
+    background-color: hsla(126, 81%, 43%, 1);
+    width: 23%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    height: fit-content;
+    gap: 10px;
+    box-shadow: 0px 0px 3px 3px hsla(0, 0%, 0%, 0.212);
+
+}
+.leftSide img{
+    width: 60%;
+}
+.bookDetails{
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 60%;
+}
+.bookDetails p{
+    width: 100%;
+    text-wrap:wrap;
+}
+.price{
+    text-align: center;
+    margin-bottom: 35px;
+}
+.rightSide{
+    background-color: hsla(126, 81%, 43%, 1);
+    width: 72%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    box-shadow: 0px 0px 3px 3px hsla(0, 0%, 0%, 0.212);
+
+}
+.rightSide .description{
+    height: 570px;
+    overflow-y:auto;
+}
+.rightSide .descText{
+    text-indent: 10px;
+}
+.description .productDescription{
+    text-align: left;
+    text-indent: 20px;
+}
+

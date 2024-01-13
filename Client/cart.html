@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="./styles/background.css">
+    <link rel="stylesheet" href="./styles/layout-style.css">
+    <link rel="stylesheet" href="./styles/cart-style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <nav>
+            <div class="leftButtons">
+                <button class="products" onclick="window.location.replace('./Products Page.html')">Products</button>
+            </div>
+    
+            <div class="rightButtons">
+                <div class="dropdown">
+                    <button class="account">Account</button>
+                    <div class="dropdownContent">
+                        <a href="./orders.html">Orders</a>
+                        <a href="./Account settings.html">Account settings</a>
+                        <a href="./signIn.html">Log out</a>
+                    </div>
+                </div>
+                <button class="cart" onclick="window.location.replace('./cart.html')">Cart</button>
+            </div>
+        </nav>
+
+        <div class="main">
+            <div class="cartContainer">
+                <hr>
+                <div class="items">
+                    <div class="item">
+                        <img src="./assets/productImages/download.jpg" alt="" class="bookImg" onclick="window.location.replace('./productDetails.html')">
+                        <p class="title" onclick="window.location.replace('./productDetails.html')">Title</p>
+                        <p class="price" >Price</p>
+                    </div>
+                    <div class="item">
+                        <img src="./assets/productImages/download.jpg" alt="" class="bookImg" onclick="window.location.replace('./productDetails.html')">
+                        <p class="title" onclick="window.location.replace('./productDetails.html')">Title</p>
+                        <p class="price" >Price</p>
+                    </div>
+                    <div class="item">
+                        <img src="./assets/productImages/download.jpg" alt="" class="bookImg" onclick="window.location.replace('./productDetails.html')">
+                        <p class="title" onclick="window.location.replace('./productDetails.html')">Title</p>
+                        <p class="price" >Price</p>
+                    </div>
+                    <div class="item">
+                        <img src="./assets/productImages/download.jpg" alt="" class="bookImg" onclick="window.location.replace('./productDetails.html')">
+                        <p class="title" onclick="window.location.replace('./productDetails.html')">Title</p>
+                        <p class="price" >Price</p>
+                    </div>
+                </div>
+                <p class="totalPrice">Total Price:</p>
+                <hr>
+
+                <div class="paymentDetails">
+                    <div class="paymentDetail">
+                        <input type="radio" class="paymeentRadio">
+                        <p class="cardNumber"> Card Number</p>
+                        <p class="cardHolderName">Card Holder Name</p>
+                    </div>
+
+                    <div class="paymentDetail">
+                        <input type="radio" class="paymeentRadio">
+                        <p class="cardNumber"> Card Number</p>
+                        <p class="cardHolderName">Card Holder Name</p>
+                    </div>
+
+                    <div class="paymentDetail">
+                        <input type="radio" class="paymeentRadio">
+                        <p class="cardNumber"> Card Number</p>
+                        <p class="cardHolderName">Card Holder Name</p>
+                    </div>
+
+                    <div class="paymentDetail">
+                        <input type="radio" class="paymeentRadio">
+                        <p class="cardNumber"> Card Number</p>
+                        <p class="cardHolderName">Card Holder Name</p>
+                    </div>
+
+                    <div class="paymentDetail">
+                        <input type="radio" class="paymeentRadio">
+                        <p class="cardNumber"> Card Number</p>
+                        <p class="cardHolderName">Card Holder Name</p>
+                    </div>
+
+                </div>
+                <hr>
+
+                <div class="adressDetails">
+                    <div class="adressDetail">
+                        <input type="radio" class="adressRadio">
+                        <p class="details">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa eaque quaerat facere, atque ex repudiandae. Necessitatibus nam quis animi! Libero.</p>
+                    </div>
+
+                    <div class="adressDetail">
+                        <input type="radio" class="adressRadio">
+                        <p class="details">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa eaque quaerat facere, atque ex repudiandae. Necessitatibus nam quis animi! Libero.</p>
+                    </div>
+                    <div class="adressDetail">
+                        <input type="radio" class="adressRadio">
+                        <p class="details">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa eaque quaerat facere, atque ex repudiandae. Necessitatibus nam quis animi! Libero.</p>
+                    </div>
+                    <div class="adressDetail">
+                        <input type="radio" class="adressRadio">
+                        <p class="details">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa eaque quaerat facere, atque ex repudiandae. Necessitatibus nam quis animi! Libero.</p>
+                    </div>
+                    <div class="adressDetail">
+                        <input type="radio" class="adressRadio">
+                        <p class="details">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa eaque quaerat facere, atque ex repudiandae. Necessitatibus nam quis animi! Libero.</p>
+                    </div>
+
+                </div>
+                <hr>
+                <button class="placeOrder">Place order</button>
+                <hr>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
