@@ -391,6 +391,181 @@ def deleteUser(userId):
         response.headers.add("Access-Control-Allow-Origin","*")
         return response,500
 
+#get all orders
+@app.route("/api/getAllOrders/<userId>", methods = ["GET"])
+def getAllOrders(userId):
+    try:
+        #connect to db/ create cursor
+        connection = sqlite3.connect(DB_Path) 
+        cursor = connection.cursor()
+        # define query
+        query = f"""SELECT orderId FROM orders WHERE userId = {userId}"""
+        allOrderIds= list(cursor.execute(query))
+        if len(allOrderIds) ==0:
+            response ={
+                "message":"No orders for this user"
+            }
+        else:
+            response = {}
+            for orderId in allOrderIds:
+                query2 = f"""select totalPrice,datePlaced, dateReceived from orders where orderId = {orderId[0]}"""
+                orderDetails = list(cursor.execute(query2))[0]
+
+                response[orderId[0]] = {
+                    "totalPrice":orderDetails[0],
+                    "datePlaced":orderDetails[1],
+                    "dateReceived":orderDetails[2],
+                }
+
+                query3 = f"""SELECT productId from orderItems where orderId = {orderId[0]}"""
+                products = list(cursor.execute(query3))
+                response[orderId[0]]["productsIds"] = {}
+                # print(products)
+                for productId in products:
+                    response[orderId[0]]["productsIds"][productId[0]] = productId[0]
+
+        #close connection to DB
+        connection.close() 
+        # create response with all of the products
+
+        response = jsonify(response)
+        response.headers.add("Access-Control-Allow-Origin","*")
+        return response,200
+    except Exception as error:
+        #error code
+        response = {
+            "message":f"Something went wrong. Cause: {error}"
+        }
+        response = jsonify(response)
+        response.headers.add("Access-Control-Allow-Origin","*")
+        return response, 500    
+    
+@app.route("/api/getOrderDetails/<orderid>", methods = ["GET"])
+def getOrderDetails(orderid):
+    try:
+        #connect to db/ create cursor
+        connection = sqlite3.connect(DB_Path) 
+        cursor = connection.cursor()
+        # define query
+        query = f"""SELECT totalPrice, datePlaced, dateReceived, adressId, paymentId FROM orders WHERE orderid = {orderid}"""
+        orderDetails= list(cursor.execute(query))[0]
+
+        totalPrice = orderDetails[0]
+        datePlaced = orderDetails[1]
+        dateReceived =orderDetails[2]
+        adressId = orderDetails[3]
+        paymentId = orderDetails[4]
+
+        query2 = f"""SELECT Details from adresses where adressId = {adressId}"""
+        orderAdress = list(cursor.execute(query2))[0]
+
+        query3 = f"""select cardHolderName,number,type from paymentDetails where paymentId = {paymentId}"""
+        orderPaymentDetails = list(cursor.execute(query3))[0]
+
+        cardHolderName = orderPaymentDetails[0]
+        cardNumber = orderPaymentDetails[1]
+        cardType = orderPaymentDetails[2]
+        response = {
+            orderid:{}
+        }
+
+        response[orderid]={
+            "totalPrice":totalPrice,
+            "datePlaced":datePlaced,
+            "dateReceived":dateReceived,
+            "orderAdress":orderAdress,
+            "cardHolderName":cardHolderName,
+            "cardNumber":cardNumber,
+            "cardType":cardType,
+        }
+        response[orderid]["products"] = {}
+
+        query4 = f"""select productId from orderItems where orderId={orderid}"""
+        productIds = list(cursor.execute(query4))
+
+        for id in productIds:
+            query5 = f"""select Title, Price  from products where productId = {id[0]}"""
+            productDetails = list(cursor.execute(query5))[0]
+            response[orderid]["products"][id[0]] = {}
+            response[orderid]["products"][id[0]]["productId"] =id[0]
+            response[orderid]["products"][id[0]]["title"] =productDetails[0]
+            response[orderid]["products"][id[0]]["price"] =productDetails[1]
+
+        #close connection to DB
+        connection.close() 
+        # create response with all of the products
+
+        response = jsonify(response)
+        response.headers.add("Access-Control-Allow-Origin","*")
+        return response,200
+    except Exception as error:
+        #error code
+        response = {
+            "message":f"Something went wrong. Cause: {error}"
+        }
+        response = jsonify(response)
+        response.headers.add("Access-Control-Allow-Origin","*")
+        return response, 500  
+
+@app.route("/api/createOrder", methods = ["POST"])
+def createOrder():
+    body = request.json
+    # {
+    #     "userId": 1,
+    #     "totalPrice": "to be calculated",
+    #     "datePlaced": "15/12/2023",
+    #     "adressId": "2",
+    #     "paymentId": "1",
+    #     "products": {
+    #         "5":"5",
+    #         "1":"1",
+    #         "3":"3"
+    #     }
+    # }
+    try:
+        #connect to db/ create cursor
+        connection = sqlite3.connect(DB_Path) 
+        cursor = connection.cursor()
+        # define query
+        userId = body["userId"]
+        totalPrice = body["totalPrice"]
+        datePlaced = body["datePlaced"]
+        adressId = body["adressId"]
+        paymentId = body["paymentId"]
+        productsIds = body["products"]
+        query1 = f"""INSERT INTO
+                orders(userId,totalPrice,datePlaced,adressId,paymentId)
+                VALUES('{userId}','{totalPrice}','{datePlaced}','{adressId}','{paymentId}')
+                """
+        
+        cursor.execute(query1)
+        connection.commit()
+
+        query2 = "select last_insert_rowid() from orders"
+        orderId = list(cursor.execute(query2))[0]
+        print("Success")
+        for id in productsIds:
+            query3 = f""" INSERT INTO orderItems(orderId,productId) VALUES('{orderId[0]}',{id})"""
+            cursor.execute(query3)
+            connection.commit()
+
+        #close connection to DB
+        connection.close() 
+        # create response with all of the products
+        response = {
+            "message":"Order Placed Successfully"
+        }
+        response = jsonify(response)
+        response.headers.add("Access-Control-Allow-Origin","*")
+        return response,200
+    except Exception as error:
+        #error code
+        response = {
+            "message":f"Something went wrong. Cause: {error}"
+        }
+        response = jsonify(response)
+        response.headers.add("Access-Control-Allow-Origin","*")
+        return response, 500  
 
 
 if __name__ == "__main__":
