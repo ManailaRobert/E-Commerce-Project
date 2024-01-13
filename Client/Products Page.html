@@ -15,6 +15,7 @@
         <nav>
             <div class="leftButtons">
                 <button class="products" onclick="window.location.replace('./Products Page.html')">Products</button>
+                <button class="adminPage" onclick="window.location.replace('./Admin Page.html')">Admin Page</button>
             </div>
 
             <div class="rightButtons">
@@ -30,18 +31,22 @@
                 </div>
                 <button class="cart" onclick="window.location.replace('./cart.html')">Cart</button>
             </div>
+            <p>Products</p>
         </nav>
 
         <div class="main">
-            <div class="product" onclick="window.location.replace('productDetails.html')">
-                <img src="./assets/productImages/download.jpg" alt="">
-                <hr>
-                <p class="Title">Title</p>
-                <p class="author">Author</p>
-                <p class="price">price</p>
+            <div class="product" >
+                <div class="productContent" onclick="window.location.replace('productDetails.html')">
+                    <img src="./assets/productImages/download.jpg" alt="">
+                    <hr>
+                    <p class="Title">Title</p>
+                    <p class="author">Author</p>
+                    <p class="price">price</p>
+                </div>
                 <button class="addToCart">Add to Cart</button>
             </div> 
 
+            
         </div>
         
     </div>

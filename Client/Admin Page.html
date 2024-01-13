@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="./styles/background.css">
+    <link rel="stylesheet" href="./styles/layout-style.css">
+    <link rel="stylesheet" href="./styles/adminPage-style.css">
+</head>
+<body>
+    <div class="container">
+
+        <nav>
+            <div class="leftButtons">
+                <button class="products" onclick="window.location.replace('./Products Page.html')">Products</button>
+            </div>
+            <p>Admin Page</p>
+        </nav>
+
+        <div class="main">
+            <div class="left">
+                <p>Users</p>
+                <hr>
+                <div class="userContainer">
+                    <p class="Username">Username1</p>
+                    <p class="Username">Username1</p>
+                    <p class="Username">Username1</p>
+                    <p class="Username">Username1</p>
+                    <p class="Username">Username1</p>
+                </div>
+                <hr>
+            </div>
+
+            <div class="middle">
+            <hr>
+                <div class="userDetails">
+                    <label >Username</label>
+                    <input type="text" >
+                    <label >Email</label>
+                    <input type="text" >
+                    <label >Password</label>
+                    <input type="text">
+                </div>
+            <hr>
+            </div>
+
+            <div class="right">
+                <button class="save">Save</button>
+                <button class="delete">Delete</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

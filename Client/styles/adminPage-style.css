@@ -1,0 +1,56 @@
+.main{
+    display: flex;
+    
+}
+.left{
+    width: 11%;
+    background-color: hsla(126, 71%, 51%, 1);
+    padding: 10px;
+}
+.userContainer{
+    margin-top: 5px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+.middle{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-top: 28px;
+    width: 60%;
+    background-color: hsla(126, 71%, 51%, 1);
+}
+
+.right{
+    width: 20.6%; 
+    padding: 10px;
+    background-color: hsla(126, 71%, 51%, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+.right button{
+width: 200px;
+}
+.userDetails{
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    height: 605px;
+    justify-content: center;
+    align-items: center;
+}
+.userDetails label{
+    margin-top: 50px;
+    margin-bottom: 5px;
+}
+.userDetails input{
+    width: 300px;
+}
+input::placeholder{
+    font-size: large;
+}
