@@ -2,10 +2,13 @@ var pass = document.getElementById("password")
 
 pass.addEventListener("keyup", keyUpPass)
 
+var userId = localStorage.getItem("userId")
+if(userId != "0")
+    window.location.replace("ProductsPage.html")
+
 function validateForm(){
     const username = document.getElementById("username").value
     const email = document.getElementById("email").value
-    console.log(email)
     const password = document.getElementById("password").value
     const password2 = document.getElementById("password2").value
     const strengthBarValue =document.getElementById("strength"). value
@@ -50,8 +53,44 @@ function validateForm(){
         document.getElementById("password2-error").innerHTML = "Passwords are not matching"
     isValid =false
     }
-    // console.log("Correct validation")
-   return isValid
+
+    if(isValid == true)
+    {
+        const URL = "http://127.0.0.1:5000/api/createUser"
+        const request = new XMLHttpRequest
+        request.open("POST",URL)
+        request.setRequestHeader("Access-Control-Allow-Origin", "true");
+        request.setRequestHeader("Content-Type", "application/json");
+        request.onload = logIn
+        request.onerror = showError
+
+        var data = {
+            "username":username,
+            "email":email,
+            "password":password
+        }
+        var jsonData= JSON.stringify(data)
+        request.send(jsonData)
+
+        function logIn()
+        {   var response = JSON.parse(request.response).message
+            console.log(response)
+            if(request.status ===200) window.location.replace("signIn.html")
+            
+            if(request.status === 400)
+            {
+                document.getElementById("email-error").innerHTML = response
+                isValid =false
+            }
+        }
+        function showError()
+        {
+            var response = JSON.parse(request.response)
+            console.error(response.message)
+            isValid =false
+        }
+    }
+        
 }
 function keyUpPass(){
     checkPassword(pass.value)

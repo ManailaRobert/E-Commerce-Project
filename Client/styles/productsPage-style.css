@@ -1,8 +1,11 @@
-
+.main{
+    margin-bottom: 50px;
+}
 .product{
     background-color: hsla(126, 81%, 43%, 1);
     min-width: 270px;
-    height: 320px;
+    max-width: 270px;
+    height: 350px;
     padding: 10px;
     display: flex;
     flex-direction: column;

@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <form id="form" action="Products Page.html" onsubmit=" return validateForm()">
+        <div id="form" >
             <h1>Log In</h1>
 
 
@@ -23,9 +23,9 @@
             <div class="error"id="password-error"></div>
         </div>
 
-        <button type="submit" >Sign In</button>
+        <button onclick="validateForm()" >Sign In</button>
         <p>If you dont have an account sign in <a href="./signUp.html">here</a>.</p>
-        </form>
+        </div>
     </div>
 </body>
 <script src="./js/signIn-script.js"></script>

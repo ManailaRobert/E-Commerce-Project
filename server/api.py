@@ -52,9 +52,8 @@ def getAllProducts():
         response.headers.add("Access-Control-Allow-Origin","*")
         return response, 500
 #get products by input
-@app.route("/api/searchBooks", methods = ["GET"])
-def searchBooks():
-    body = request.json
+@app.route("/api/searchBooks/<input>", methods = ["GET"])
+def searchBooks(input):
     # {
     #     "title":"Title"
     # }
@@ -63,7 +62,7 @@ def searchBooks():
         connection = sqlite3.connect(DB_Path) 
         cursor = connection.cursor()
         # define query
-        query = f"""select productId,Title,Author,Price from products where Title LIKE '%{body['title']}%'"""
+        query = f"""select productId,Title,Author,Price from products where Title LIKE '%{input}%'"""
         # execute querry
         productsData= cursor.execute(query) 
         productsData = list(productsData)
@@ -258,6 +257,7 @@ def createUser():
             connection.commit()
         except Exception as error:
             # codul pt erori 
+            print(error)
             response = {
                 "message": f"This email is already in use."
             }
@@ -286,29 +286,42 @@ def createUser():
 @app.route("/api/signIn", methods = ["POST"])
 def logIn():
     body = request.json
+    print(body)
     try:
         connection = sqlite3.connect(DB_Path)
         cursor = connection.cursor()
         query = f"""SELECT userid, username, password, accountType from users WHERE email = '{body["email"]}'"""
         try:
-            data = list(cursor.execute(query))[0]
+            data = list(cursor.execute(query))
             connection.close()
-            if data[2] == body["password"]:
-                response ={
-                    "userId": data[0],
-                    "accountType":data[3],
-                    "message":"Log In successfull"
-                }
-                response = jsonify(response)
-                response.headers.add("Access-Control-Allow-Origin","*")
-                return response,200                
-            else:
+            if len(data)==0:
                 response = {
-                    "message":"Wrong password"
-                }
+                        "problem":"email",
+                        "message":"Invalid email"
+                    }
+                print(response)
                 response=jsonify(response)
                 response.headers.add("Access-Control-Allow-Origin","*")
-                return response,400    
+                return response,400                       
+            else:
+                data = data[0]
+                if data[2] == body["password"]:
+                    response ={
+                        "userId": data[0],
+                        "accountType":data[3],
+                        "message":"Log In successfull"
+                    }
+                    response = jsonify(response)
+                    response.headers.add("Access-Control-Allow-Origin","*")
+                    return response,200                
+                else:
+                    response = {
+                        "problem":"password",
+                        "message":"Wrong password"
+                    }
+                    response=jsonify(response)
+                    response.headers.add("Access-Control-Allow-Origin","*")
+                    return response,400    
         except Exception as error:
             #error code
             connection.close()            
@@ -802,7 +815,7 @@ def deleteCard(cardId):
             WHERE 
                 paymentId=?"""
         #execut query with the parameters provided
-        cursor.execute(query,(cardId))
+        cursor.execute(query,(cardId,))
         #commit changes
         connection.commit()
 
@@ -839,7 +852,7 @@ def deleteAdress(adressId):
             WHERE 
                 adressId=?"""
         #execut query with the parameters provided
-        cursor.execute(query,(adressId))
+        cursor.execute(query,(adressId,))
         #commit changes
         connection.commit()
 
@@ -858,6 +871,7 @@ def deleteAdress(adressId):
         response = {
             "message":f"Something went wrong. Cause: {error}"
         }
+        print(response)
         response = jsonify(response)
         response.headers.add("Access-Control-Allow-Origin", "*")
         return response,500

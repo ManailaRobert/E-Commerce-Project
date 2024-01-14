@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <form id="form" action="signIn.html" onsubmit=" return validateForm()">
+        <div id="form" >
             <h1>Create your account</h1>
 
         <div class="input-control">
@@ -32,10 +32,10 @@
             <input type="text" name="password2" id="password2" placeholder=" Retype Password">
             <div class="error"id="password2-error"></div>
         </div>
-        <button type="submit" >Sign Up</button>
+        <button type="submit" onclick ="validateForm()">Sign Up</button>
 
         <p>If you have an account sign up <a href="./signIn.html">here</a>.</p>
-        </form>
+    </div>
     </div>
 </body>
 <script src="./js/signUp-script.js"></script>

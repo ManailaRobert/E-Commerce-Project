@@ -14,8 +14,7 @@
 
         <nav>
             <div class="leftButtons">
-                <button class="products" onclick="window.location.replace('./Products Page.html')">Products</button>
-                <button class="adminPage" onclick="window.location.replace('./Admin Page.html')">Admin Page</button>
+                <button class="products" onclick="window.location.replace('./ProductsPage.html')">Products</button>
             </div>
 
             <div class="rightButtons">
@@ -26,7 +25,7 @@
                     <div class="dropdownContent">
                         <a href="./orders.html">Orders</a>
                         <a href="./Account settings.html">Account settings</a>
-                        <a href="./signIn.html">Log out</a>
+                        <a href="signIn.html" onclick="logOut()">Log out</a>
                     </div>
                 </div>
                 <button class="cart" onclick="window.location.replace('./cart.html')">Cart</button>
@@ -35,7 +34,8 @@
         </nav>
 
         <div class="main">
-            <div class="product" >
+
+            <!-- <div class="product" >
                 <div class="productContent" onclick="window.location.replace('productDetails.html')">
                     <img src="./assets/productImages/download.jpg" alt="">
                     <hr>
@@ -44,12 +44,16 @@
                     <p class="price">price</p>
                 </div>
                 <button class="addToCart">Add to Cart</button>
-            </div> 
+            </div>  -->
 
             
         </div>
         
     </div>
 </body>
+<script src="./js/redirectToSignUp.js"></script>
+<script src="./js/domCreation.js"></script>
+<script src="./js/verifyAccountType.js"></script>
 <script src="./js/productsPage-script.js"></script>
+
 </html>

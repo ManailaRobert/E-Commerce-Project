@@ -13,8 +13,7 @@
 
         <nav>
             <div class="leftButtons">
-                <button class="products" onclick="window.location.replace('./Products Page.html')">Products</button>
-                <button class="adminPage" onclick="window.location.replace('./Admin Page.html')">Admin Page</button>
+                <button class="products" onclick="window.location.replace('./ProductsPage.html')">Products</button>
             </div>
     
             <div class="rightButtons">
@@ -41,11 +40,12 @@
                 <div class="content"></div>
                 <!-- <div class="content content1">
                     <hr>
+                    <button class="saveChanges">Save</button>
+                    <hr>
                     <div class="usernameContainer">
                         <label >Username:</label>
                         <div class="usernameDetails">
                             <input type="text" class="username">
-                            <button class="changeUsername">Change</button>
                         </div>
                     </div>
                     <hr>
@@ -53,7 +53,6 @@
                         <label>Email:</label>
                         <div class="emailDetails">
                             <input type="text" class="email">
-                            <button class="changeEmail">Change</button>
                         </div>
                     </div>
                     <hr>
@@ -61,7 +60,6 @@
                         <label>Password:</label>
                         <div class="passwordDetails">
                             <input type="password" class="password">
-                            <button class="changePassword">Change</button>
                             <button class="view">View</button>
                         </div>
                     </div>
@@ -115,5 +113,8 @@
         </div>
     </div>
 </body>
+<script src="./js/redirectToSignUp.js"></script>
+<script src="./js/domCreation.js"></script>
+<script src="./js/verifyAccountType.js"></script>
 <script src="./js/accountSettings-script.js"></script>
 </html>
