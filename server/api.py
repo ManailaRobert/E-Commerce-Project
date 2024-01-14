@@ -51,6 +51,50 @@ def getAllProducts():
         response = jsonify(response)
         response.headers.add("Access-Control-Allow-Origin","*")
         return response, 500
+#get products by input
+@app.route("/api/searchBooks", methods = ["GET"])
+def searchBooks():
+    body = request.json
+    # {
+    #     "title":"Title"
+    # }
+    try:
+        #connect to db/ create cursor
+        connection = sqlite3.connect(DB_Path) 
+        cursor = connection.cursor()
+        # define query
+        query = f"""select productId,Title,Author,Price from products where Title LIKE '%{body['title']}%'"""
+        # execute querry
+        productsData= cursor.execute(query) 
+        productsData = list(productsData)
+        #close connection to DB
+        connection.close() 
+        # create response with all of the products
+        response = {}
+        for productElement in productsData:
+           id =int(productElement[0])
+           book_title = productElement[1]
+           book_author = productElement[2]
+           book_price = productElement[3]
+           book={
+               "id": id,
+               "title": book_title,
+               "author":book_author,
+               "price": book_price
+           }
+           response[id] = book
+
+        response = jsonify(response)
+        response.headers.add("Access-Control-Allow-Origin","*")
+        return response,200
+    except Exception as error:
+        #error code
+        response = {
+            "message":f"Something went wrong. Cause: {error}"
+        }
+        response = jsonify(response)
+        response.headers.add("Access-Control-Allow-Origin","*")
+        return response, 500
 # gets book details
 @app.route("/api/book/<book_id>", methods = ["GET"])
 def getProduct(book_id):
@@ -91,7 +135,7 @@ def getAllUsers():
     try:
         connection = sqlite3.connect(DB_Path)
         cursor = connection.cursor()
-        query = "select userid, email from users"
+        query = """select userid, email from users where accountType = 'Client' and status = 'active' """
         data = list(cursor.execute(query))
         connection.close()
         response = {}
@@ -140,7 +184,7 @@ def getUserAdresses(userId):
     try:
         connection = sqlite3.connect(DB_Path)
         cursor = connection.cursor()
-        query = f"""select adressId, details from adresses where userid = {userId}"""
+        query = f"""select adressId, details from adresses where userid = {userId} and status = 'active'"""
         data = list(cursor.execute(query))
         connection.close()
         response= {}
@@ -167,8 +211,15 @@ def getPaymentMethods(userId):
     try:
         connection = sqlite3.connect(DB_Path)
         cursor = connection.cursor()
-        query = f"""select paymentId, cardHolderName, number, type from paymentDetails where userid = {userId}"""
+        query = f"""select paymentId, cardHolderName, number, type from paymentDetails where userid = {userId} and status = 'active'"""
         data = list(cursor.execute(query))
+        if len(data) == 0: 
+            response = {
+             "message": f"There are no cards available"
+            }
+            response = jsonify(response)
+            response.headers.add("Access-Control-Allow-Origin", "*")
+            return response, 200
         connection.close()
         response= {}
         for el in data:
@@ -361,16 +412,21 @@ def editUser(userId):
         return response,500
 
 #delete user
-@app.route("/api/deleteUser/<userId>", methods = ["DELETE"])
+@app.route("/api/deleteUser/<userId>", methods = ["PUT"])
 def deleteUser(userId):
     try:
         #connect to db/ create cursor
         connection = sqlite3.connect(DB_Path)
         cursor = connection.cursor()
         #define query
-        query = f"""DELETE FROM users WHERE userid = {userId}"""
+        query = f"""
+                UPDATE users 
+                SET 
+                status = 'inactive'
+                WHERE 
+                    userid=?"""
         #execute query
-        cursor.execute(query)
+        cursor.execute(query,(userId))
         #commit changes
         connection.commit()
         #close connection to db
@@ -439,7 +495,8 @@ def getAllOrders(userId):
         response = jsonify(response)
         response.headers.add("Access-Control-Allow-Origin","*")
         return response, 500    
-    
+
+#get order details
 @app.route("/api/getOrderDetails/<orderid>", methods = ["GET"])
 def getOrderDetails(orderid):
     try:
@@ -506,7 +563,7 @@ def getOrderDetails(orderid):
         response = jsonify(response)
         response.headers.add("Access-Control-Allow-Origin","*")
         return response, 500  
-
+#create order
 @app.route("/api/createOrder", methods = ["POST"])
 def createOrder():
     body = request.json
@@ -566,7 +623,244 @@ def createOrder():
         response = jsonify(response)
         response.headers.add("Access-Control-Allow-Origin","*")
         return response, 500  
+#show items from cart
+@app.route("/api/showCartItems", methods = ['GET'])
+def showCartItems():
+    body = request.json
+
+    {
+        "products":{
+            "1":"1",
+            "2":"2",
+            "3":"3"
+        }
+    }
+    try:
+        #connect to db/ create cursor
+        connection = sqlite3.connect(DB_Path) 
+        cursor = connection.cursor()
+        # define query
+        response = {}
+        for productId in body["products"]:
+            query = f"""SELECT Title, Price from products where productId = {productId}"""
+            productDetails = list(cursor.execute(query))[0]
+            response[productId] = {
+                "title":productDetails[0],
+                "price":productDetails[1]
+            }
+        connection.close() 
+        # create response with all of the products
+
+        response = jsonify(response)
+        response.headers.add("Access-Control-Allow-Origin","*")
+        return response,200
+    except Exception as error:
+        #error code
+        response = {
+            "message":f"Something went wrong. Cause: {error}"
+        }
+        response = jsonify(response)
+        response.headers.add("Access-Control-Allow-Origin","*")
+        return response, 500    
+
+#total price for items 
+@app.route("/api/totalPriceForItems", methods = ['GET'])
+def getTotalPriceForItems():
+    body = request.json
+    # {
+    #     "products":{
+    #         "1":"1",
+    #         "2":"2",
+    #         "3":"3"
+    #     }
+    # }
+    try:
+        #connect to db/ create cursor
+        connection = sqlite3.connect(DB_Path) 
+        cursor = connection.cursor()
+        # define query
+        totalPrice = 0.00
+        response = {}
+        for productId in body["products"]:
+            query = f"""SELECT Price from products where productId = {productId}"""
+            productDetails = list(cursor.execute(query))[0]
+            totalPrice = totalPrice + float(productDetails[0])
+
+        response ={
+            "totalPrice":round(totalPrice,2)
+        }
+        connection.close() 
+        # create response with all of the products
+
+        response = jsonify(response)
+        response.headers.add("Access-Control-Allow-Origin","*")
+        return response,200
+    except Exception as error:
+        #error code
+        response = {
+            "message":f"Something went wrong. Cause: {error}"
+        }
+        response = jsonify(response)
+        response.headers.add("Access-Control-Allow-Origin","*")
+        return response, 500
+#add card
+@app.route("/api/addCard/<userId>", methods= ["POST"])
+def addCard(userId):
+    body = request.json
+    # {
+    #     "cardHolderName":"Anthony",
+    #     "cardNumber":"39871293421",
+    #     "cardType": "Mastercard"
+    # }
+    try: 
+        
+        #connection open/ create cursor
+        connection = sqlite3.connect(DB_Path)
+        cursor = connection.cursor()
+
+        cardHolderName = body["cardHolderName"]
+        cardNumber = body["cardNumber"]
+        cardType = body["cardType"]
+
+        query = f"""INSERT INTO paymentDetails(userId,cardHolderName,number,type) values('{userId}','{cardHolderName}','{cardNumber}','{cardType}')"""
+        cursor.execute(query)
+        connection.commit()
+        query2 = "select last_insert_rowid() from paymentDetails"
+        cardid = list(cursor.execute(query2))[0]
+        connection.close()
+        response = {
+                "cardId":cardid[0],
+                "cardHolderName":cardHolderName,
+                "cardNumber":cardNumber,
+                "cardType": cardType,
+                "message": "Card added successfuly"
+        }
+        response= jsonify(response)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response, 200
 
 
+    except Exception as error:
+        # codul pt erori
+        connection.close()
+        response = {
+            "message": f"Something went wrong. Cause: {error}."
+        }
+        response = jsonify(response)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response, 500
+#add adress
+@app.route("/api/addAdress/<userId>", methods= ["POST"])
+def addAdress(userId):
+    body = request.json
+    # {
+    #     "Details":"Strada dumbrava"
+    # }
+    try: 
+        #connection open/ create cursor
+        connection = sqlite3.connect(DB_Path)
+        cursor = connection.cursor()
+
+        details = body["Details"]
+
+        query1 = f"""INSERT INTO adresses(userId,Details) values('{userId}','{details}')"""
+        cursor.execute(query1)
+        connection.commit()
+        query2 = "select last_insert_rowid() from adresses"
+        adressId = list(cursor.execute(query2))[0]
+
+        #close connection
+        connection.close()
+        response = {
+                "adressId":adressId[0],
+                "details": details,
+                "message": "Adress added successfuly"
+        }
+        response= jsonify(response)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response, 200
+    except Exception as error:
+        # codul pt erori 
+        response = {
+            "message": f"Something went wrong. Cause: {error}."
+        }
+        response = jsonify(response)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response, 500
+#delete card 
+@app.route("/api/deleteCard/<cardId>", methods = ["PUT"])
+def deleteCard(cardId):
+    try:
+        connection = sqlite3.connect(DB_Path)
+        cursor = connection.cursor()
+        
+        #define query
+        query = f"""
+            UPDATE paymentDetails 
+            SET 
+                status='inactive'
+            WHERE 
+                paymentId=?"""
+        #execut query with the parameters provided
+        cursor.execute(query,(cardId))
+        #commit changes
+        connection.commit()
+
+        #close connection to db
+        connection.close()
+        #request successfull
+        response = {
+            "message":"Successfully removed the card."
+        }
+        response = jsonify(response)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response, 200 #204 no content
+        
+    except Exception as error:
+        #error code
+        response = {
+            "message":f"Something went wrong. Cause: {error}"
+        }
+        response = jsonify(response)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response,500
+#delete adress
+@app.route("/api/deleteAdress/<adressId>", methods = ["PUT"])
+def deleteAdress(adressId):
+    try:
+        connection = sqlite3.connect(DB_Path)
+        cursor = connection.cursor()
+        
+        #define query
+        query = f"""
+            UPDATE adresses 
+            SET 
+                status='inactive'
+            WHERE 
+                adressId=?"""
+        #execut query with the parameters provided
+        cursor.execute(query,(adressId))
+        #commit changes
+        connection.commit()
+
+        #close connection to db
+        connection.close()
+        #request successfull
+        response = {
+            "message":"Successfuly removed the adress"
+        }
+        response = jsonify(response)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response, 200 #204 no content
+        
+    except Exception as error:
+        #error code
+        response = {
+            "message":f"Something went wrong. Cause: {error}"
+        }
+        response = jsonify(response)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response,500
+    
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
