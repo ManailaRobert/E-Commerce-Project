@@ -142,21 +142,27 @@ function createRightSideContent_MyDetails()
         request2.send()
 
         function onSuccess()
-        {   var response = JSON.parse(request2.response)
-            //adress container
-            for(let adressId in response){
-                // add all adresses from db 
-
-                var adressItem = createAndAppend(adresses,'div','adressItem')
-                //adress item content
-                let pElement = createAndAppend(adressItem,'p','details') 
-                pElement.textContent= response[adressId].details
-                let btnDelete = createAndAppend(adressItem,"button",'delete')
-                btnDelete.textContent ="Delete"
-                btnDelete.id = response[adressId].adressId
-                btnDelete.addEventListener("click",deleteAdress)
-                adresses.appendChild(adressItem)
+        {   
+            if(request2.status == 200){
+                var response = JSON.parse(request2.response)
+                //adress container
+                for(let adressId in response){
+                    // add all adresses from db 
+    
+                    var adressItem = createAndAppend(adresses,'div','adressItem')
+                    //adress item content
+                    let pElement = createAndAppend(adressItem,'p','details') 
+                    pElement.textContent= response[adressId].details
+                    let btnDelete = createAndAppend(adressItem,"button",'delete')
+                    btnDelete.textContent ="Delete"
+                    btnDelete.id = response[adressId].adressId
+                    btnDelete.addEventListener("click",deleteAdress)
+                    adresses.appendChild(adressItem)
+                }
             }
+
+            if(request2.status == 204)
+                console.log("No available adresses")
             
         }
 
@@ -219,7 +225,7 @@ function createRightSideContent_MyCards(){
     request.send()
 
     function onSuccess()
-    {       
+    {   if(request.status == 200){
         var cards = JSON.parse(request.response)
         console.log(cards)
         for(const cardId in cards){
@@ -249,6 +255,13 @@ function createRightSideContent_MyCards(){
             createAndAppend(card,"hr")
         } 
         createAndAppend(content,"hr")     
+        }
+        if(request.status == 204)
+            {
+                console.log("No cards available.")
+            }
+                
+        
     }
     function showError()
     {
