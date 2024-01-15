@@ -20,18 +20,23 @@
     overflow-x:hidden;
 }
 .item{
+    background-color: hsla(126, 77%, 61%, 1);
     display: flex;
+    padding: 5px;
     gap:20px;
     margin-top: 5px;
-    
 }
 .item hr{
     width: 20%;
+
 }
-a{
+.item a{
     align-self: center;
     text-decoration: none;
     cursor: pointer;
+    text-wrap: nowrap;
+}
+.item p {
 }
 .priceDiv{
     display: flex;
