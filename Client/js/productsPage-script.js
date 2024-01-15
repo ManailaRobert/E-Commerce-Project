@@ -94,8 +94,13 @@ function loadBooks(books)
         addToCartBTN.id = books[key].id
         addToCartBTN.addEventListener("click",function(){
             var cartItems =localStorage.getItem("cartItems")
-            cartItems = cartItems+ ` ${event.target.id}`
-            localStorage.setItem("cartItems",cartItems)
+            if(cartItems.length === 0){
+                cartItems =`${event.target.id}`
+                localStorage.setItem("cartItems",cartItems)
+            }else{
+                cartItems = cartItems+ `;${event.target.id}`
+                localStorage.setItem("cartItems",cartItems)
+            }
         })
         addToCartBTN.textContent = "Add to cart"
 

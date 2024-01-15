@@ -32,14 +32,18 @@
     gap: 10px;
 }
 .item img{
-    height: 160px;
+    height: 158px;
+    width: 105px;
     cursor: pointer;
 }
 .item .title{
-    margin-left: 100px;
+    text-align: left;
+    width: 40%;
+    text-wrap: nowrap;
+    cursor: pointer;
 }
 .item .price{
-    margin-left: 700px;
+    margin-left: 100px;
 }
 .totalPrice{
     width: 98%;
@@ -77,4 +81,13 @@
     align-self: center;
     box-shadow: 0px 0px 3px 3px hsla(0, 0%, 0%, 0.212);
 
+}
+.removeItemBTN{
+    margin-left: 200px;
+}
+.cardNumber{
+    cursor: pointer;
+}
+.details{
+    cursor: pointer;
 }

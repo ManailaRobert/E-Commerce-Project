@@ -609,6 +609,14 @@ def createOrder():
         adressId = body["adressId"]
         paymentId = body["paymentId"]
         productsIds = body["products"]
+        if(len(productsIds)==0):
+            #error code
+            response = {
+                "message":f"No products in cart"
+            }
+            response = jsonify(response)
+            response.headers.add("Access-Control-Allow-Origin","*")
+            return response, 400  
         query1 = f"""INSERT INTO
                 orders(userId,totalPrice,datePlaced,adressId,paymentId)
                 VALUES('{userId}','{totalPrice}','{datePlaced}','{adressId}','{paymentId}')
@@ -632,6 +640,7 @@ def createOrder():
             "message":"Order Placed Successfully"
         }
         response = jsonify(response)
+        print(response)
         response.headers.add("Access-Control-Allow-Origin","*")
         return response,200
     except Exception as error:
@@ -683,9 +692,10 @@ def showCartItems():
         return response, 500    
 
 #total price for items 
-@app.route("/api/totalPriceForItems", methods = ['GET'])
+@app.route("/api/totalPriceForItems", methods = ['POST'])
 def getTotalPriceForItems():
     body = request.json
+    print(body)
     # {
     #     "products":{
     #         "1":"1",
@@ -702,11 +712,12 @@ def getTotalPriceForItems():
         response = {}
         for productId in body["products"]:
             query = f"""SELECT Price from products where productId = {productId}"""
+
             productDetails = list(cursor.execute(query))[0]
             totalPrice = totalPrice + float(productDetails[0])
 
         response ={
-            "totalPrice":round(totalPrice,2)
+            "totalPrice":f'{round(totalPrice,2)}'
         }
         connection.close() 
         # create response with all of the products

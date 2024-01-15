@@ -36,8 +36,14 @@ function onSuccess()
     addToCartBTN.id =bookId
     addToCartBTN.addEventListener("click", function(){
         var cartItems =localStorage.getItem("cartItems")
-        cartItems = cartItems+ ` ${event.target.id}`
-        localStorage.setItem("cartItems",cartItems)
+        if(cartItems.length === 0){
+            cartItems =`${event.target.id}`
+            localStorage.setItem("cartItems",cartItems)
+        }else{
+            cartItems = cartItems+ `;${event.target.id}`
+            localStorage.setItem("cartItems",cartItems)
+        }
+
     })
 
     var productDescription = document.getElementsByClassName("productDescription")[0]

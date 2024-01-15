@@ -31,7 +31,7 @@ function displayOrder(){
             orderId.innerHTML = `Order ID: # ${selectedOrderID} |`
 
             let orderDate = document.getElementsByClassName("orderDate")[0]
-            orderDate.innerHTML = `Placed on : ${dateReceivedDetails} `
+            orderDate.innerHTML = `Placed on : ${datePlacedDetails} `
             if(dateReceivedDetails != null)
                 orderDate.innerHTML +=`| Delivered on: ${dateReceivedDetails}`
 
@@ -47,9 +47,12 @@ function displayOrder(){
                 let productItem = createAndAppend(orderContent, "div", "item")
                 let productImage = createAndAppend(productItem,"img")
                 productImage.src = `./assets/productImages/book${productId}.jpeg`
+                productImage.addEventListener("click",function(){
+                    localStorage.setItem("selectedProduct",productId)
+                    window.location.replace("productDetails.html")
+                })
                 let productAnchor = createAndAppend(productItem,"a")
                 productAnchor.addEventListener("click",function(){
-                    console.log(productId)
 
                     localStorage.setItem("selectedProduct",productId)
                     window.location.replace("productDetails.html")

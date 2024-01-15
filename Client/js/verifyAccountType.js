@@ -17,4 +17,6 @@ function adminPanelOpen()
 function logOut(){
     localStorage.setItem("userId",0)
     localStorage.setItem("userType",0)
+    localStorage.setItem("cartItems","")
+    localStorage.setItem("selectedOrders",0)
 }
