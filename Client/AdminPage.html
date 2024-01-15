@@ -16,6 +16,18 @@
                 <button class="products" onclick="window.location.replace('./ProductsPage.html')">Products</button>
             </div>
             <p>Admin Page</p>
+
+            <div class="rightButtons">
+                <div class="dropdown">
+                    <button class="account">Account</button>
+                    <div class="dropdownContent">
+                        <a href="./orders.html">Orders</a>
+                        <a href="./Account settings.html">Account settings</a>
+                        <a href="signIn.html" onclick="logOut()">Log out</a>
+                    </div>
+                </div>
+                <button class="cart" onclick="window.location.replace('./cart.html')">Cart</button>
+            </div>
         </nav>
 
         <div class="main">
@@ -23,11 +35,7 @@
                 <p>Users</p>
                 <hr>
                 <div class="userContainer">
-                    <p class="Username">Username1</p>
-                    <p class="Username">Username1</p>
-                    <p class="Username">Username1</p>
-                    <p class="Username">Username1</p>
-                    <p class="Username">Username1</p>
+                    <!-- <p class="Username">Username1</p> -->
                 </div>
                 <hr>
             </div>
@@ -35,23 +43,23 @@
             <div class="middle">
             <hr>
                 <div class="userDetails">
-                    <label >Username</label>
+                    <!-- <label >Username</label>
                     <input type="text" >
                     <label >Email</label>
-                    <input type="text" >
-                    <label >Password</label>
-                    <input type="text">
+                    <input type="text" > -->
                 </div>
             <hr>
             </div>
 
             <div class="right">
-                <button class="save">Save</button>
-                <button class="delete">Delete</button>
+                <!-- <button class="save">Save</button>
+                <button class="delete">Delete</button> -->
             </div>
         </div>
     </div>
 </body>
 <script src="./js/redirectToSignUp.js"></script>
-
+<script src="./js/domCreation.js"></script>
+<script src="./js/verifyAccountType.js"></script>
+<script src = "./js/adminPage.js"></script>
 </html>

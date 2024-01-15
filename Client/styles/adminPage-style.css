@@ -3,7 +3,7 @@
     
 }
 .left{
-    width: 11%;
+    width: 21%;
     background-color: hsla(126, 71%, 51%, 1);
     padding: 10px;
 }
@@ -17,9 +17,9 @@
 .middle{
     padding-left: 20px;
     padding-right: 20px;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
     padding-top: 28px;
-    width: 60%;
+    width: 50%;
     background-color: hsla(126, 71%, 51%, 1);
 }
 
@@ -40,12 +40,11 @@ width: 200px;
     margin: 5px;
     display: flex;
     flex-direction: column;
-    height: 605px;
+    height: 595px;
     justify-content: center;
     align-items: center;
 }
 .userDetails label{
-    margin-top: 50px;
     margin-bottom: 5px;
 }
 .userDetails input{
@@ -53,4 +52,10 @@ width: 200px;
 }
 input::placeholder{
     font-size: large;
+}
+.selected{
+    text-decoration: underline;
+}
+.emailLabel{
+    margin-top: 30px;
 }

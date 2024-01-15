@@ -1,4 +1,5 @@
 localStorage.setItem("selectedProduct","0")
+verifyAccountType()
 document.addEventListener("DOMContentLoaded",displayOrder)
 
 

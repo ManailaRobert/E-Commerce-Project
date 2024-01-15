@@ -3,6 +3,7 @@ var cartPrice
 document.addEventListener("DOMContentLoaded",onLoad)
 var userId = localStorage.getItem("userId")
 function onLoad(){
+    verifyAccountType()
     showCartProducts()
     calculateTotalPrice()
     loadCards()

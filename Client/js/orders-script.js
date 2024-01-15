@@ -1,3 +1,4 @@
+verifyAccountType()
 document.addEventListener("DOMContentLoaded",loadOrders)
 var userId = localStorage.getItem("userId")
 localStorage.setItem("selectedOrder","0")

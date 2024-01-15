@@ -356,7 +356,6 @@ def editUser(userId):
     try:
         username = body['username']
         email = body['email']
-        password = body['password']
         #checks if username is not null
         if len(username) == 0:
             response = {
@@ -376,13 +375,6 @@ def editUser(userId):
             return response,400
         
         #checks if password is not null
-        if len(password) ==0:
-            response = {
-            "message":"Invalid password change. (Is null)"
-            }
-            response = jsonify(response)
-            response.headers.add("Access-Control-Allow-Origin", "*")
-            return response,400
         
         
         connection = sqlite3.connect(DB_Path)
@@ -395,17 +387,16 @@ def editUser(userId):
                 UPDATE users 
                 SET 
                     username=?,
-                    email=?,
-                    password=?
+                    email=?
                 WHERE 
                     userid=?"""
             #execut query with the parameters provided
-            cursor.execute(query, (username, email, password, userId))
+            cursor.execute(query, (username, email, userId))
             #commit changes
             connection.commit()
         except Exception as error:
             response = {
-                "message":f"This email already exists. "
+                "message":f"This email already exists."
             }
             response = jsonify(response)
             response.headers.add("Access-Control-Allow-Origin", "*")
