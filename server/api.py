@@ -94,7 +94,7 @@ def searchBooks(input):
         response = jsonify(response)
         response.headers.add("Access-Control-Allow-Origin","*")
         return response, 500
-# gets book details
+# gets book details 
 @app.route("/api/book/<book_id>", methods = ["GET"])
 def getProduct(book_id):
     try:
@@ -210,7 +210,6 @@ def getUserAdresses(userId):
         response = jsonify(response)
         response.headers.add("Access-Control-Allow-Origin", "*")
         return response, 500
-
 #gets all payment methods
 @app.route("/api/paymentMethods/<userId>", methods = ["GET"])
 def getPaymentMethods(userId):
