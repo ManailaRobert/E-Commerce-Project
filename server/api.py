@@ -185,6 +185,13 @@ def getUserAdresses(userId):
         cursor = connection.cursor()
         query = f"""select adressId, details from adresses where userid = {userId} and status = 'active'"""
         data = list(cursor.execute(query))
+        if len(data) == 0: 
+            response = {
+             "message": f"There are no adresses available"
+            }
+            response = jsonify(response)
+            response.headers.add("Access-Control-Allow-Origin", "*")
+            return response, 204
         connection.close()
         response= {}
         for el in data:
@@ -218,7 +225,7 @@ def getPaymentMethods(userId):
             }
             response = jsonify(response)
             response.headers.add("Access-Control-Allow-Origin", "*")
-            return response, 200
+            return response, 204
         connection.close()
         response= {}
         for el in data:
