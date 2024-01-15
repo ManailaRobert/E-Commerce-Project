@@ -40,9 +40,7 @@ function displayOrder(){
             for(let key in productsDetails)
             {
                 let product = productsDetails[key]
-                console.log(product)
                 let productId = product.productId
-                console.log(productId)
                 let productTitle = product.title
                 let productPrice = product.price
 
@@ -51,16 +49,32 @@ function displayOrder(){
                 productImage.src = `./assets/productImages/book${productId}.jpeg`
                 let productAnchor = createAndAppend(productItem,"a")
                 productAnchor.addEventListener("click",function(){
-                    localStorage.getItem("selectedProduct",productId)
+                    console.log(productId)
+
+                    localStorage.setItem("selectedProduct",productId)
                     window.location.replace("productDetails.html")
                 })
                 productAnchor.textContent =  productTitle
                 let pElement = createAndAppend(productItem,"p","price")
-                pElement.textContent = `${productPrice} lei`
+                pElement.textContent =  `${productPrice} lei`
 
             }
+            let totalPrice = document.getElementsByClassName("totalPrice")[0]
+            console.log(totalPrice)
+            totalPrice.innerHTML = `Total price: ${totalPriceDetails}`
+            let adressDetails = document.getElementsByClassName("details")[0]
+            adressDetails.innerHTML = orderAdressDetails
+
+
+            let cardType = document.getElementsByClassName("cardType")[0]
+            cardType.innerHTML += cardTypeDetails
+            let cardNumber = document.getElementsByClassName("cardNumber")[0]
+            cardNumber.innerHTML += cardNumberDetails
+            let cardHolderName = document.getElementsByClassName("cardHolderName")[0]
+            cardHolderName.innerHTML += cardHolderNameDetails
+
         
-        
+            
         }
     }
     function showError()

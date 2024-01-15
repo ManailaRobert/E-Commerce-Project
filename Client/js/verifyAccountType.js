@@ -13,3 +13,8 @@ function adminPanelOpen()
 {
     window.location.replace("AdminPage.html")
 }
+
+function logOut(){
+    localStorage.setItem("userId",0)
+    localStorage.setItem("userType",0)
+}

@@ -28,20 +28,22 @@
 }
 .item hr{
     width: 20%;
-
 }
 .item a{
     align-self: center;
     text-decoration: none;
     cursor: pointer;
     text-wrap: nowrap;
+    width: 45%;
 }
-.item p {
+.item p{
+    text-wrap: nowrap;
 }
 .priceDiv{
     display: flex;
     padding: 5px;
     justify-content: right;
+
 }
 .bottom{
     display: flex;
@@ -63,5 +65,5 @@ img{
 }
 .price{
     align-self: center;
-    margin-left: 400px;
+    margin-left: 100px;
 }

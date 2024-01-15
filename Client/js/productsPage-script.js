@@ -3,10 +3,7 @@ var main = document.getElementsByClassName("main")[0]
 var searchInput = document.getElementById("searchBox")
 var btnSearch = document.getElementsByClassName("search")[0]
 btnSearch.addEventListener("click",searchBooks)
-function logOut(){
-    localStorage.setItem("userId",0)
-    localStorage.setItem("userType",0)
-}
+
 document.addEventListener("DOMContentLoaded",onLoadPage)
 function onLoadPage(){
 // localStorage.setItem("cartItems","")
