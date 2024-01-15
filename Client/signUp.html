@@ -23,14 +23,16 @@
         </div>
 
         <div class="input-control">
-            <input type="text" name="password" id="password" placeholder="Password">
+            <input type="password" name="password" id="password" placeholder="Password">
             <progress max="100" value="0" id="strength" style="width: 100%;"></progress>
+            <span class="passwordToggle passwordToggle1" id="1" onclick="togglePassword()">Show</span>
             <div class="error"id="password-error"></div>
         </div>
 
         <div class="input-control">
-            <input type="text" name="password2" id="password2" placeholder=" Retype Password">
+            <input type="password" name="password2" id="password2" placeholder=" Retype Password">
             <div class="error"id="password2-error"></div>
+            <span class="passwordToggle passwordToggle2" id="2" onclick="togglePassword()">Show</span>
         </div>
         <button type="submit" onclick ="validateForm()">Sign Up</button>
 

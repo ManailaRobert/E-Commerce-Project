@@ -135,3 +135,31 @@ function checkPassword(password)
 
         }
 }
+function togglePassword(){
+    var id = event.target.id
+    if(id ==1){
+        passwordInput = document.getElementById('password');
+        passwordToggle = document.querySelector('.passwordToggle1'); 
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            passwordToggle.textContent = 'Hide';
+          } else {
+            passwordInput.type = 'password';
+            passwordToggle.textContent = 'Show';
+          }
+    }
+    else
+    {
+        passwordInput = document.getElementById('password2');
+        passwordToggle = document.querySelector('.passwordToggle2'); 
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            passwordToggle.textContent = 'Hide';
+          } else {
+            passwordInput.type = 'password';
+            passwordToggle.textContent = 'Show';
+          }
+    }
+
+
+}

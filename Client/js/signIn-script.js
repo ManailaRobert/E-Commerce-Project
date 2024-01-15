@@ -84,3 +84,15 @@ function validateForm(){
 
 }
 
+function togglePassword(){
+    const passwordInput = document.getElementById('password');
+    const passwordToggle = document.querySelector('.passwordToggle');
+
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      passwordToggle.textContent = 'Hide';
+    } else {
+      passwordInput.type = 'password';
+      passwordToggle.textContent = 'Show';
+    }
+}
