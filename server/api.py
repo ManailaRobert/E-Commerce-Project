@@ -49,7 +49,7 @@ def getAllProducts():
         # lenght = len(response)
         # for elements in response:      
         #    # print(response[lenght])
-        #     response2[lenght] = response[lenght]
+        #     response2[elements] = response[lenght]
         #     lenght = lenght-1       
 
         # print(response2)

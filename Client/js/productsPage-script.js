@@ -51,7 +51,7 @@ function searchBooks(){
         container.removeChild(main)
         createAndAppend(container,"div","main")
         main = document.getElementsByClassName("main")[0]
-       loadBooks(books)
+        loadBooks(books)
    }
    function showError()
    {
@@ -90,7 +90,7 @@ function loadBooks(books)
         price.id = books[key].id
         price.addEventListener("click", itemClick)
 
-        var addToCartBTN= createAndAppend(product,"button","addToCart")
+        var addToCartBTN = createAndAppend(product,"button","addToCart")
         addToCartBTN.id = books[key].id
         addToCartBTN.addEventListener("click",function(){
             var cartItems =localStorage.getItem("cartItems")
