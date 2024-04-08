@@ -27,6 +27,10 @@ def getAllProducts():
         connection.close() 
         # create response with all of the products
         response = {}
+
+        
+        
+
         for productElement in productsData:
            id =int(productElement[0])
            book_title = productElement[1]
@@ -39,6 +43,24 @@ def getAllProducts():
                "price": book_price
            }
            response[id] = book
+
+
+        # response2 = {}
+        # lenght = len(response)
+        # for elements in response:      
+        #    # print(response[lenght])
+        #     response2[elements] = response[lenght]
+        #     lenght = lenght-1       
+
+        # print(response2)
+        # response2 = jsonify(response2)
+        # response2.headers.add("Access-Control-Allow-Origin","*")\
+        # print(response.values)
+        # print(sorted(list(response.values()),key = "id",reverse=True))
+        # response =
+
+        # print(sorted(response[key]))
+
 
         response = jsonify(response)
         response.headers.add("Access-Control-Allow-Origin","*")

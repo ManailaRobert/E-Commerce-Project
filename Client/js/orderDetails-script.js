@@ -65,7 +65,7 @@ function displayOrder(){
             }
             let totalPrice = document.getElementsByClassName("totalPrice")[0]
             console.log(totalPrice)
-            totalPrice.innerHTML = `Total price: ${totalPriceDetails}`
+            totalPrice.innerHTML = `Total price: ${totalPriceDetails} lei`
             let adressDetails = document.getElementsByClassName("details")[0]
             adressDetails.innerHTML = orderAdressDetails
 
